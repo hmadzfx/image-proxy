@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Proxy Documentation</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #3498db;
+            --accent-hover: #2980b9;
+            --border-color: #333333;
+            --code-bg: #2d2d2d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent), #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            margin: 1.5rem 0;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background: var(--accent-hover);
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+
+        .preview-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .copy-button {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .copy-button:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .documentation-section {
+            margin: 4rem 0;
+        }
+
+        .example-section {
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Proxy</h1>
+            <p class="subtitle">A high-performance image proxy service powered by Cloudflare Workers</p>
+        </header>
+
+        <section class="features-grid">
+            <div class="feature-card">
+                <h3>Global Edge Network</h3>
+                <p>Images are served from Cloudflare's global CDN network, ensuring minimal latency worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <h3>CORS Support</h3>
+                <p>Built-in CORS support allows seamless integration with any web application.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Edge Caching</h3>
+                <p>Automatic caching at the edge reduces origin load and improves response times.</p>
+            </div>
+        </section>
+
+        <section class="documentation-section">
+            <h2>Interactive Demo</h2>
+            <div class="card">
+                <div class="input-group">
+                    <label for="urlInput">Image URL</label>
+                    <input type="url" id="urlInput" placeholder="https://example.com/image.jpg">
+                    <button onclick="generateProxyUrl()">Generate Proxy URL</button>
+                </div>
+                
+                <div id="proxyUrlDisplay" class="code-block" style="display: none;">
+                    <code id="proxyUrl"></code>
+                    <button class="copy-button" onclick="copyToClipboard()">Copy URL</button>
+                </div>
+
+                <div class="preview-container">
+                    <img id="previewImage" class="preview-image" style="display: none;">
+                </div>
+            </div>
+        </section>
+
+        <section class="documentation-section">
+            <h2>Implementation Guide</h2>
+            
+            <div class="example-section">
+                <h3>HTML Implementation</h3>
+                <div class="code-block">
+                    <code>&lt;img src="https://your-worker.workers.dev/https://example.com/image.jpg" alt="Proxied Image"&gt;</code>
+                </div>
+            </div>
+
+            <div class="example-section">
+                <h3>CSS Background</h3>
+                <div class="code-block">
+                    <code>.element {
+    background-image: url('https://your-worker.workers.dev/https://example.com/image.jpg');
+}</code>
+                </div>
+            </div>
+
+            <div class="example-section">
+                <h3>JavaScript Fetch</h3>
+                <div class="code-block">
+                    <code>const proxyUrl = 'https://your-worker.workers.dev/';
+const imageUrl = 'https://example.com/image.jpg';
+const url = proxyUrl + encodeURIComponent(imageUrl);
+
+fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+        const objectUrl = URL.createObjectURL(blob);
+        image.src = objectUrl;
+    });</code>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function generateProxyUrl() {
+            const input = document.getElementById('urlInput');
+            const display = document.getElementById('proxyUrlDisplay');
+            const proxyUrl = document.getElementById('proxyUrl');
+            const preview = document.getElementById('previewImage');
+            
+            if (input.value) {
+                const workerUrl = window.location.origin;
+                const fullUrl = `${workerUrl}/${encodeURIComponent(input.value)}`;
+                
+                proxyUrl.textContent = fullUrl;
+                display.style.display = 'block';
+                
+                preview.src = fullUrl;
+                preview.style.display = 'block';
+                preview.onerror = () => {
+                    preview.style.display = 'none';
+                    alert('Failed to load image. Please check the URL and try again.');
+                };
+            }
+        }
+
+        function copyToClipboard() {
+            const proxyUrl = document.getElementById('proxyUrl').textContent;
+            navigator.clipboard.writeText(proxyUrl).then(() => {
+                const button = document.querySelector('.copy-button');
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
